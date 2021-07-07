@@ -1,0 +1,14 @@
+exports.plesk_host = {
+    hostname: 'my.host.com',
+    login_data: {
+        user: 'username',
+        password: 'password'
+    }
+};
+
+exports.whitelisted_urls = [
+    'site1.com',
+    'site2.com'
+];
+
+exports.debug = false;

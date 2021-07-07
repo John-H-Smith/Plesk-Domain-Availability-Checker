@@ -1,0 +1,23 @@
+{
+  "name": "fhw-domain-availability-checker",
+  "version": "1.0.0",
+  "description": "A checker for domains on plesk instance",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/John-H-Smith/Plesk-Domain-Availability-Checker.git"
+  },
+  "author": "Fabian Heinz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/John-H-Smith/Plesk-Domain-Availability-Checker/issues"
+  },
+  "homepage": "https://github.com/John-H-Smith/Plesk-Domain-Availability-Checker#readme",
+  "dependencies": {
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  }
+}
