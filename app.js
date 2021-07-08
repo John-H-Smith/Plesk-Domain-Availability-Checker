@@ -9,6 +9,7 @@ let headers = {
 };
 let props = { properties: { host: { description: colors.cyan( 'Hostname' ), required: true, }, user: { description: colors.cyan( 'Username' ), required: true, default: 'root' }, pass: { description: colors.cyan( 'Password' ), hidden: true, required: true } } };
 prompt.message = "";
+prompt.delimiter = colors.cyan( ':' );
 let username = "", password = "", hostname = "";
 
 (async () => {
