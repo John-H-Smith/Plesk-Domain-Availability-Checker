@@ -2,11 +2,13 @@
 const conf = require( './config' );
 const request = require( 'request-promise' );
 const prompt = require( 'prompt' );
+const colors = require( 'colors/safe' );
 let debug = conf.debug;
 let headers = {
     'Content-Type': 'application/json',
 };
-let props = { properties: { host: { description: 'Hostname', required: true }, user: { description: 'Username', required: true, default: 'root' }, pass: { description: 'Password', hidden: true, required: true } } };
+let props = { properties: { host: { description: colors.cyan( 'Hostname' ), required: true, }, user: { description: colors.cyan( 'Username' ), required: true, default: 'root' }, pass: { description: colors.cyan( 'Password' ), hidden: true, required: true } } };
+prompt.message = "";
 let username = "", password = "", hostname = "";
 
 (async () => {
