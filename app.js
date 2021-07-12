@@ -7,7 +7,7 @@ let debug = conf.debug;
 let headers = {
     'Content-Type': 'application/json',
 };
-let props = { properties: { host: { description: colors.cyan( 'Hostname' ), required: true, }, user: { description: colors.cyan( 'Username' ), required: true, default: 'root' }, pass: { description: colors.cyan( 'Password' ), hidden: true, required: true } } };
+let props = { properties: {} };
 prompt.message = "";
 prompt.delimiter = colors.cyan( ':' );
 let username = "", password = "", hostname = "";
@@ -20,27 +20,40 @@ let username = "", password = "", hostname = "";
 
 async function getLoginData() {
 
-    username = conf.plesk_host.login_data.user;
     hostname = conf.plesk_host.hostname;
+    username = conf.plesk_host.login_data.user;
     password = conf.plesk_host.login_data.password;
     
     process.argv.forEach( (val, index, arr) => {
-        if( val === '-u' )
-            username = process.argv[index+1];
         if( val === '-h' )
             hostname = process.argv[index+1];
+        if( val === '-u' )
+            username = process.argv[index+1];
         if( val === '-p' )
             password = process.argv[index+1];
         if( val === '-d' )
             debug = true;
     } );      
     
-    if( password === "" ) {
+    if( hostname === "" )
+        props.properties.host = { description: colors.cyan( 'Hostname' ), required: true, };
+
+    if( username === "" )
+        props.properties.user = { description: colors.cyan( 'Username' ), required: true, default: 'root' };
+
+    if( password === "" )
+        props.properties.pass = { description: colors.cyan( 'Password' ), hidden: true, required: true };
+
+    if( props.properties != {} ) {
         prompt.start();
-        let {pass, user, host} = await prompt.get( props );
-        password = pass;
-        hostname = host;
-        username = user;
+        let { host, user, pass } = await prompt.get( props );
+
+        if( host )
+            hostname = host;
+        if( user )
+            username = user;
+        if( pass )
+            password = pass;
     }
 }
 
