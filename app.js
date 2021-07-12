@@ -13,8 +13,10 @@ prompt.delimiter = colors.cyan( ':' );
 let username = "", password = "", hostname = "";
 
 (async () => {
-    await getLoginData();
-    loadData();
+    try {
+        await getLoginData();
+        loadData();
+    } catch( error ) {}
 } )();
 
 
